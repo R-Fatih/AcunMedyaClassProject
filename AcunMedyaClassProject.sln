@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35931.197 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcunMedyaClassProject.WebApi", "AcunMedyaClassProject.WebApi\AcunMedyaClassProject.WebApi.csproj", "{5041C5E3-EC49-40A7-96A0-F6BBDCC31E75}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5041C5E3-EC49-40A7-96A0-F6BBDCC31E75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5041C5E3-EC49-40A7-96A0-F6BBDCC31E75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5041C5E3-EC49-40A7-96A0-F6BBDCC31E75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5041C5E3-EC49-40A7-96A0-F6BBDCC31E75}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {53CFE875-09C5-4081-A9F2-62D5F26F4037}
+	EndGlobalSection
+EndGlobal
