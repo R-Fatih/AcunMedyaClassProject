@@ -10,6 +10,11 @@ namespace AcunMedyaClassProject.WebApi.Context
         {
         }
 
-       
+        public DbSet<Lecture> Lectures { get; set; }
+        public DbSet<LectureExam> LectureExams { get; set; }
+        public DbSet<StudentLecture> StudentLectures { get; set; }
+
+        
+
     }
 }

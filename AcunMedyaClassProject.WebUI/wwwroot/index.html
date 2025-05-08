@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akademik Portal</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3f51b5;
+            --secondary-color: #ff4081;
+            --success-color: #4caf50;
+            --info-color: #03a9f4;
+            --warning-color: #ff9800;
+            --danger-color: #f44336;
+            --light-color: #f5f5f5;
+            --dark-color: #212121;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color), #303f9f);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 24px;
+            color: white !important;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.8) !important;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .nav-link:hover {
+            color: white !important;
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-bottom: 20px;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-header {
+            border-radius: 10px 10px 0 0 !important;
+            font-weight: 600;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color), #303f9f);
+            color: white;
+            padding: 100px 0;
+            margin-bottom: 30px;
+            border-radius: 0 0 20px 20px;
+        }
+
+        .display-4 {
+            font-weight: 700;
+        }
+
+        .sidebar {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            position: sticky;
+            top: 20px;
+        }
+
+        .sidebar .nav-link {
+            color: var(--dark-color) !important;
+            border-radius: 5px;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .sidebar .nav-link:hover,
+        .sidebar .nav-link.active {
+            background-color: var(--primary-color);
+            color: white !important;
+        }
+
+        .sidebar .nav-link i {
+            margin-right: 8px;
+        }
+
+        .badge-custom {
+            padding: 6px 10px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        .footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 40px 0;
+            margin-top: 50px;
+        }
+
+        .course-card {
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .course-card:hover {
+            border-left: 5px solid var(--secondary-color);
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .btn-floating {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+
+        #login-page {
+            display: block;
+        }
+
+        #teacher-page,
+        #student-page {
+            display: none;
+        }
+
+        /* Animasyonlar */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animated {
+            animation: fadeIn 0.5s ease-out;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- LOGIN PAGE -->
+    <div id="login-page">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <i class="fas fa-university me-2"></i>
+                    AKADEMİK PORTAL
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="fas fa-info-circle me-1"></i> Hakkında</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="fas fa-envelope me-1"></i> İletişim</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <section class="hero-section">
+            <div class="container text-center">
+                <h1 class="display-4 mb-4">Üniversite Akademik Yönetim Sistemi</h1>
+                <p class="lead mb-5">Derslerinizi yönetin, notlarınızı takip edin ve akademik başarınızı artırın!</p>
+            </div>
+        </section>
+
+        <div class="container animated">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6">
+                    <div class="card">
+                        <div class="card-header bg-primary text-white">
+                            <h4 class="mb-0">Giriş Yap</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-4">
+                                <div class="btn-group w-100" role="group">
+                                    <button type="button" class="btn btn-outline-primary active"
+                                        id="student-login-btn">Öğrenci</button>
+                                    <button type="button" class="btn btn-outline-primary"
+                                        id="teacher-login-btn">Öğretmen</button>
+                                </div>
+                            </div>
+                            <form id="login-form">
+                                <div class="mb-3">
+                                    <label for="username" class="form-label">Kullanıcı Adı</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                        <input type="text" class="form-control" id="username"
+                                            placeholder="Kullanıcı adınızı girin">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="password" class="form-label">Şifre</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                        <input type="password" class="form-control" id="password"
+                                            placeholder="Şifrenizi girin">
+                                    </div>
+                                </div>
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" class="form-check-input" id="rememberMe">
+                                    <label class="form-check-label" for="rememberMe">Beni hatırla</label>
+                                </div>
+                                <button type="button" class="btn btn-primary w-100 mb-3" id="login-button">
+                                    <i class="fas fa-sign-in-alt me-2"></i>Giriş Yap
+                                </button>
+                                <div class="text-center">
+                                    <a href="#" class="text-decoration-none">Şifremi unuttum</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer mt-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h5>AKADEMİK PORTAL</h5>
+                        <p>Eğitim hayatınızı kolaylaştıran dijital çözümler sunuyoruz.</p>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Hızlı Linkler</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="#" class="text-light">Ana Sayfa</a></li>
+                            <li><a href="#" class="text-light">Hakkımızda</a></li>
+                            <li><a href="#" class="text-light">İletişim</a></li>
+                            <li><a href="#" class="text-light">Yardım Merkezi</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>İletişim</h5>
+                        <address>
+                            <p><i class="fas fa-map-marker-alt me-2"></i> Üniversiteler Mah., 06800 Çankaya/Ankara</p>
+                            <p><i class="fas fa-phone me-2"></i> (0312) 123 45 67</p>
+                            <p><i class="fas fa-envelope me-2"></i> info@akademikportal.edu.tr</p>
+                        </address>
+                    </div>
+                </div>
+                <hr class="mt-4 mb-4 bg-light">
+                <div class="text-center">
+                    <p>&copy; 2025 Akademik Portal. Tüm hakları saklıdır.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- TEACHER PAGE -->
+    <div id="teacher-page">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <i class="fas fa-university me-2"></i>
+                    AKADEMİK PORTAL
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#teacherNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="teacherNavbar">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="fas fa-bell me-1"></i> Bildirimler</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="fas fa-cog me-1"></i> Ayarlar</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="teacherDropdown" role="button"
+                                data-bs-toggle="dropdown">
+                                <div class="avatar">DR</div>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i> Profil</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="fas fa-envelope me-2"></i> Mesajlar</a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#" id="teacher-logout"><i
+                                            class="fas fa-sign-out-alt me-2"></i> Çıkış Yap</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container-fluid mt-4">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="sidebar">
+                        <div class="text-center mb-4">
+                            <div class="avatar mx-auto" style="width: 80px; height: 80px; font-size: 32px;">DR</div>
+                            <h5 class="mt-3 mb-1">Dr. Ayşe Yılmaz</h5>
+                            <p class="text-muted">Bilgisayar Mühendisliği</p>
+                        </div>
+                        <hr>
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#"><i class="fas fa-tachometer-alt"></i> Kontrol
+                                    Paneli</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><i class="fas fa-book"></i> Derslerim</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><i class="fas fa-users"></i> Öğrencilerim</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><i class="fas fa-clipboard-list"></i> Notlandırma</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><i class="fas fa-calendar-alt"></i> Takvim</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><i class="fas fa-envelope"></i> Mesajlar</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><i class="fas fa-cog"></i> Ayarlar</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h2>Öğretmen Paneli</h2>
+                        <div>
+                            <button class="btn btn-primary me-2" data-bs-toggle="modal"
+                                data-bs-target="#addCourseModal">
+                                <i class="fas fa-plus me-1"></i> Yeni Ders Ekle
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card bg-primary text-white mb-4">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h5 class="card-title">Aktif Dersler</h5>
+                                            <h2>5</h2>
+                                        </div>
+                                        <i class="fas fa-book fa-3x opacity-50"></i>
+                                    </div>
+                                </div>
+                                <div class="card-footer d-flex align-items-center justify-content-between">
+                                    <a class="text-white text-decoration-none" href="#">Detayları Görüntüle</a>
+                                    <div><i class="fas fa-angle-right"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card bg-success text-white mb-4">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h5 class="card-title">Toplam Öğrenci</h5>
+                                            <h2>153</h2>
+                                        </div>
+                                        <i class="fas fa-users fa-3x opacity-50"></i>
+                                    </div>
+                                </div>
+                                <div class="card-footer d-flex align-items-center justify-content-between">
+                                    <a class="text-white text-decoration-none" href="#">Detayları Görüntüle</a>
+                                    <div><i class="fas fa-angle-right"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card bg-warning text-white mb-4">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h5 class="card-title">Bekleyen Görevler</h5>
+                                            <h2>12</h2>
+                                        </div>
+                                        <i class="fas fa-tasks fa-3x opacity-50"></i>
+                                    </div>
+                                </div>
+                                <div class="card-footer d-flex align-items-center justify-content-between">
+                                    <a class="text-white text-decoration-none" href="#">Detayları Görüntüle</a>
+                                    <div><i class="fas fa-angle-right"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mb-4">
+                        <div class="card-header bg-white">
+                            <h5 class="mb-0"><i class="fas fa-book me-2"></i> Derslerim</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Ders Kodu</th>
+                                            <th>Ders Adı</th>
+                                            <th>Öğrenci Sayısı</th>
+                                            <th>Durum</th>
+                                            <th>İşlemler</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>CS101</td>
+                                            <td>Bilgisayar Programlama I</td>
+                                            <td>45</td>
+                                            <td><span class="badge bg-success">Aktif</span></td>
+                                            <td>
+                                                <div class="btn-group btn-group-sm">
+                                                    <button class="btn btn-outline-primary" data-bs-toggle="modal"
+                                                        data-bs-target="#gradeModal"><i class="fas fa-pen"></i></button>
+                                                    <button class="btn btn-outline-info"><i
+                                                            class="fas fa-eye"></i></button>
+                                                    <button class="btn btn-outline-danger"><i
+                                                            class="fas fa-trash"></i></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>CS202</td>
+                                            <td>Veri Yapıları ve Algoritmalar</td>
+                                            <td>38</td>
+                                            <td><span class="badge bg-success">Aktif</span></td>
+                                            <td>
+                                                <div class="btn-group btn-group-sm">
+                                                    <button class="btn btn-outline-primary"><i
+                                                            class="fas fa-pen"></i></button>
+                                                    <button class="btn btn-outline-info"><i
+                                                            class="fas fa-eye"></i></button>
+                                                    <button class="btn btn-outline-danger"><i
+                                                            class="fas fa-trash"></i></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>CS305</td>
+                                            <td>Veritabanı Sistemleri</td>
+                                            <td>30</td>
+                                            <td><span class="badge bg-success">Aktif</span></td>
+                                            <td>
+                                                <div class="btn-group btn-group-sm">
+                                                    <button class="btn btn-outline-primary"><i
+                                                            class="fas fa-pen"></i></button>
+                                                    <button class="btn btn-outline-info"><i
+                                                            class="fas fa-eye"></i></button>
+                                                    <button class="btn btn-outline-danger"><i
+                                                            class="fas fa-trash"></i></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>CS401</td>
+                                            <td>Yazılım Mühendisliği</td>
+                                            <td>25</td>
+                                            <td><span class="badge bg-success">Aktif</span></td>
+                                            <td>
+                                                <div class="btn-group btn-group-sm">
+                                                    <button class="btn btn-outline-primary"><i
+                                                            class="fas fa-pen"></i></button>
+                                                    <button class="btn btn-outline-info"><i
+                                                            class="fas fa-eye"></i></button>
+                                                    <button class="btn btn-outline-danger"><i
+                                                            class="fas fa-trash"></i></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>CS450</td>
+                                            <td>Yapay Zeka</td>
+                                            <td>15</td>
+                                            <td><span class="badge bg-success">Aktif</span></td>
+                                            <td>
+                                                <div class="btn-group btn-group-sm">
+                                                    <button class="btn btn-outline-primary"><i
+                                                            class="fas fa-pen"></i></button>
+                                                    <button class="btn btn-outline-info"><i
+                                                            class="fas fa-eye"></i></button>
+                                                    <button class="btn btn-outline-danger"><i
+                                                            class="fas fa-trash"></i></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header bg-white">
+                            <h5 class="mb-0"><i class="fas fa-calendar-alt me-2"></i> Yaklaşan Etkinlikler</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="list-group">
+                                <a href="#" class="list-group-item list-group-item-action">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1">CS101 - Vize Sınavı</h5>
+                                        <small class="text-danger">2 gün kaldı</small>
+                                    </div>
+                                    <p class="mb-1">Bilgisayar Programlama I dersi vize sınavı - Saat: 10:00-12:00</p>
+                                    <small>Derslik: A310</small>
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1">CS305 - Proje Teslimi</h5>
+                                        <small class="text-warning">5 gün kaldı</small>
+                                    </div>
+                                    <p class="mb-1">Veritabanı Sistemleri dersi final projesi teslim tarihi</p>
+                                    <small>Çevrimiçi Teslim</small>
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1">Fakülte Toplantısı</h5>
+                                        <small class="text-muted">1 hafta kaldı</small>
+                                    </div>
+                                    <p class="mb-1">Mühendislik Fakültesi Öğretim Üyeleri Toplantısı</p>
+                                    <small>Toplantı Salonu B</small>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Not Girme Modalı -->
+        <div class="modal fade" id="gradeModal" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title">CS101 - Bilgisayar Programlama I - Not Girişi</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Öğrenci No</th>
+                                        <th>Öğrenci Adı</th>
+                                        <th>Vize (%40)</th>
+                                        <th>Final (%60)</th>
+                                        <th>Ortalama</th>
+                                        <th>Harf Notu</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>201901001</td>
+                                        <td>Ahmet Yılmaz</td>
+                                        <td><input type="number" class="form-control form-control-sm" value="75"></td>
+                                        <td><input type="number" class="form-control form-control-sm" value="85"></td>
+                                        <td>81</td>
+                                        <td>
+                                            <select class="form-select form-select-sm">
+                                                <option>AA</option>
+                                                <option>BA</option>
+                                                <option selected>BB</option>
+                                                <option>CB</option>
+                                                <option>CC</option>
+                                                <option>DC</option>
+                                                <option>DD</option>
+                                                <option>FF</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>201901015</td>
+                                        <td>Zeynep Şahin</td>
+                                        <td><input type="number" class="form-control form-control-sm" value="40"></td>
+                                        <td><input type="number" class="form-control form-control-sm" value="55"></td>
+                                        <td>49</td>
+                                        <td>
+                                            <select class="form-select form-select-sm">
+                                                <option>AA</option>
+                                                <option>BA</option>
+                                                <option>BB</option>
+                                                <option>CB</option>
+                                                <option>CC</option>
+                                                <option>DC</option>
+                                                <option selected>DD</option>
+                                                <option>FF</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>201901023</td>
+                                        <td>Burak Öztürk</td>
+                                        <td><input type="number" class="form-control form-control-sm" value="55"></td>
+                                        <td><input type="number" class="form-control form-control-sm" value="45"></td>
+                                        <td>49</td>
+                                        <td>
+                                            <select class="form-select form-select-sm">
+                                                <option>AA</option>
+                                                <option>BA</option>
+                                                <option>BB</option>
+                                                <option>CB</option>
+                                                <option>CC</option>
+                                                <option>DC</option>
+                                                <option selected>DD</option>
+                                                <option>FF</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
+                        <button type="button" class="btn btn-primary">Notları Kaydet</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ders Ekleme Modalı -->
+        <div class="modal fade" id="addCourseModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title">Yeni Ders Ekle</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="courseCode" class="form-label">Ders Kodu</label>
+                                <input type="text" class="form-control" id="courseCode">
+                            </div>
+                            <div class="mb-3">
+                                <label for="courseName" class="form-label">Ders Adı</label>
+                                <input type="text" class="form-control" id="courseName">
+                            </div>
+                            <div class="mb-3">
+                                <label for="courseDescription" class="form-label">Açıklama</label>
+                                <textarea class="form-control" id="courseDescription" rows="3"></textarea>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="courseCredits" class="form-label">Kredi</label>
+                                        <input type="number" class="form-control" id="courseCredits">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="courseCapacity" class="form-label">Kontenjan</label>
+                                        <input type="number" class="form-control" id="courseCapacity">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="courseSemester" class="form-label">Dönem</label>
+                                <select class="form-select" id="courseSemester">
+                                    <option selected>Seçiniz</option>
+                                    <option>Güz</option>
+                                    <option>Bahar</option>
+                                    <option>Yaz</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
+                        <button type="button" class="btn btn-primary">Dersi Ekle</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <a href="#" class="btn btn-primary btn-floating">
+            <i class="fas fa-plus"></i>
+        </a>
+    </div>
+
+    <!-- STUDENT PAGE -->
+    <div id="student-page">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <i class="fas fa-university me-2"></i>
+                    AKADEMİK PORTAL
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#studentNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="studentNavbar">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="fas fa-bell me-1"></i> Bildirimler</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="fas fa-cog me-1"></i> Ayarlar</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="studentDropdown" role="button"
+                                data-bs-toggle="dropdown">
+                                <div class="avatar">MS</div>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i> Profil</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="fas fa-envelope me-2"></i> Mesajlar</a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#" id="student-logout"><i
+                                            class="fas fa-sign-out-alt me-2"></i> Çıkış Yap</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container-fluid mt-4">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="sidebar">
+                        <div class="text-center mb-4">
+                            <div class="avatar mx-auto" style="width: 80px; height: 80px; font-size: 32px;">MS</div>
+                            <h5 class="mt-3 mb-1">Mustafa Sarı</h5>
+                            <p class="text-muted">Bilgisayar Mühendisliği</p>
+                            <div class="badge bg-primary">3. Sınıf</div>
+                        </div>
+                        <hr>
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#"><i class="fas fa-tachometer-alt"></i> Kontrol
+                                    Paneli</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><i class="fas fa-book"></i> Derslerim</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><i class="fas fa-clipboard-list"></i> Notlarım</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><i class="fas fa-tasks"></i> Ödevlerim</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><i class="fas fa-calendar-alt"></i> Akademik Takvim</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><i class="fas fa-envelope"></i> Mesajlar</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><i class="fas fa-cog"></i> Ayarlar</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h2>Öğrenci Paneli</h2>
+                        <div>
+                            <button class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#enrollModal">
+                                <i class="fas fa-plus me-1"></i> Ders Kaydı Yap
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card bg-primary text-white mb-4">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h5 class="card-title">Alınan Dersler</h5>
+                                            <h2>4</h2>
+                                        </div>
+                                        <i class="fas fa-book fa-3x opacity-50"></i>
+                                    </div>
+                                </div>
+                                <div class="card-footer d-flex align-items-center justify-content-between">
+                                    <a class="text-white text-decoration-none" href="#">Detayları Görüntüle</a>
+                                    <div><i class="fas fa-angle-right"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card bg-info text-white mb-4">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h5 class="card-title">GANO</h5>
+                                            <h2>3.42</h2>
+                                        </div>
+                                        <i class="fas fa-chart-line fa-3x opacity-50"></i>
+                                    </div>
+                                </div>
+                                <div class="card-footer d-flex align-items-center justify-content-between">
+                                    <a class="text-white text-decoration-none" href="#">Detayları Görüntüle</a>
+                                    <div><i class="fas fa-angle-right"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card bg-warning text-white mb-4">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h5 class="card-title">Bekleyen Ödevler</h5>
+                                            <h2>3</h2>
+                                        </div>
+                                        <i class="fas fa-clipboard-check fa-3x opacity-50"></i>
+                                    </div>
+                                </div>
+                                <div class="card-footer d-flex align-items-center justify-content-between">
+                                    <a class="text-white text-decoration-none" href="#">Detayları Görüntüle</a>
+                                    <div><i class="fas fa-angle-right"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mb-4">
+                        <div class="card-header bg-white">
+                            <h5 class="mb-0"><i class="fas fa-book me-2"></i> Kayıtlı Derslerim</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover align-middle">
+                                    <thead>
+                                        <tr>
+                                            <th>Ders Kodu</th>
+                                            <th>Ders Adı</th>
+                                            <th>Öğretmen</th>
+                                            <th>Kredi</th>
+                                            <th>Not</th>
+                                            <th>İşlemler</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>CS101</td>
+                                            <td>Bilgisayar Programlama I</td>
+                                            <td>Dr. Ayşe Yılmaz</td>
+                                            <td>4</td>
+                                            <td><span class="badge bg-success">BA (3.5)</span></td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-info" data-bs-toggle="modal"
+                                                    data-bs-target="#viewGradesModal"><i class="fas fa-eye"></i> Notları
+                                                    Gör</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>CS202</td>
+                                            <td>Veri Yapıları ve Algoritmalar</td>
+                                            <td>Dr. Ayşe Yılmaz</td>
+                                            <td>4</td>
+                                            <td><span class="badge bg-warning text-dark">CB (2.5)</span></td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-info"><i class="fas fa-eye"></i>
+                                                    Notları Gör</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>CS305</td>
+                                            <td>Veritabanı Sistemleri</td>
+                                            <td>Dr. Ayşe Yılmaz</td>
+                                            <td>3</td>
+                                            <td><span class="badge bg-secondary">Devam Ediyor</span></td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-info"><i class="fas fa-eye"></i>
+                                                    Notları Gör</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>MATH201</td>
+                                            <td>Diferansiyel Denklemler</td>
+                                            <td>Prof. Dr. Ahmet Kaya</td>
+                                            <td>3</td>
+                                            <td><span class="badge bg-secondary">Devam Ediyor</span></td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-info"><i class="fas fa-eye"></i>
+                                                    Notları Gör</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header bg-white">
+                                    <h5 class="mb-0"><i class="fas fa-calendar-alt me-2"></i> Yaklaşan Etkinlikler</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="list-group">
+                                        <a href="#" class="list-group-item list-group-item-action">
+                                            <div class="d-flex w-100 justify-content-between">
+                                                <h6 class="mb-1">CS305 - Vize Sınavı</h6>
+                                                <small class="text-danger">2 gün kaldı</small>
+                                            </div>
+                                            <small>8 Mayıs 2025, Saat: 10:00</small>
+                                        </a>
+                                        <a href="#" class="list-group-item list-group-item-action">
+                                            <div class="d-flex w-100 justify-content-between">
+                                                <h6 class="mb-1">CS305 - Proje Teslimi</h6>
+                                                <small class="text-warning">5 gün kaldı</small>
+                                            </div>
+                                            <small>11 Mayıs 2025, Saat: 23:59</small>
+                                        </a>
+                                        <a href="#" class="list-group-item list-group-item-action">
+                                            <div class="d-flex w-100 justify-content-between">
+                                                <h6 class="mb-1">MATH201 - Ödev 3</h6>
+                                                <small class="text-muted">1 hafta kaldı</small>
+                                            </div>
+                                            <small>15 Mayıs 2025, Saat: 23:59</small>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header bg-white">
+                                    <h5 class="mb-0"><i class="fas fa-bullhorn me-2"></i> Duyurular</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="list-group">
+                                        <a href="#" class="list-group-item list-group-item-action">
+                                            <div class="d-flex w-100 justify-content-between">
+                                                <h6 class="mb-1">Üniversite Bahar Şenliği</h6>
+                                                <small>2 gün önce</small>
+                                            </div>
+                                            <small>20-24 Mayıs 2025 tarihleri arasında gerçekleşecek olan bahar şenliği
+                                                etkinlikleri için katılım formunu doldurunuz.</small>
+                                        </a>
+                                        <a href="#" class="list-group-item list-group-item-action">
+                                            <div class="d-flex w-100 justify-content-between">
+                                                <h6 class="mb-1">Final Sınavları Takvimi</h6>
+                                                <small>5 gün önce</small>
+                                            </div>
+                                            <small>2024-2025 Bahar Dönemi final sınavları programı yayınlanmıştır.
+                                                Öğrenci işleri sayfasından kontrol ediniz.</small>
+                                        </a>
+                                        <a href="#" class="list-group-item list-group-item-action">
+                                            <div class="d-flex w-100 justify-content-between">
+                                                <h6 class="mb-1">Yaz Okulu Kayıtları</h6>
+                                                <small>1 hafta önce</small>
+                                            </div>
+                                            <small>2025 Yaz Okulu ön kayıtları 1 Haziran 2025 tarihinde
+                                                başlayacaktır.</small>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Not Görüntüleme Modalı -->
+        <div class="modal fade" id="viewGradesModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title">CS101 - Bilgisayar Programlama I - Notlarım</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h6 class="card-title mb-0">Genel Bilgiler</h6>
+                                    <span class="badge bg-success">BA (3.5)</span>
+                                </div>
+                                <hr>
+                                <p class="card-text"><strong>Öğretmen:</strong> Dr. Ayşe Yılmaz</p>
+                                <p class="card-text"><strong>Kredi:</strong> 4</p>
+                                <p class="card-text"><strong>Dönem:</strong> Güz 2024-2025</p>
+                            </div>
+                        </div>
+
+                        <h6 class="mb-3">Not Dağılımı</h6>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Değerlendirme</th>
+                                        <th>Ağırlık</th>
+                                        <th>Not</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Vize Sınavı</td>
+                                        <td>%40</td>
+                                        <td>75 / 100</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Final Sınavı</td>
+                                        <td>%60</td>
+                                        <td>85 / 100</td>
+                                    </tr>
+                                    <tr class="table-primary">
+                                        <td><strong>Genel Ortalama</strong></td>
+                                        <td>%100</td>
+                                        <td><strong>81 / 100</strong></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="alert alert-info mt-3">
+                            <i class="fas fa-info-circle me-2"></i> BA (3.5) not ortalaması iyi bir başarıyı temsil
+                            eder. 81-89 arası puanlar BA ile değerlendirilir.
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                        <button type="button" class="btn btn-primary">
+                            <i class="fas fa-download me-1"></i> PDF İndir
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ders Kaydı Modalı -->
+        <div class="modal fade" id="enrollModal" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title">Ders Kaydı</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-search"></i></span>
+                                <input type="text" class="form-control" placeholder="Ders ara...">
+                            </div>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th><input type="checkbox" class="form-check-input"></th>
+                                        <th>Ders Kodu</th>
+                                        <th>Ders Adı</th>
+                                        <th>Öğretmen</th>
+                                        <th>Kredi</th>
+                                        <th>Kontenjan</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><input type="checkbox" class="form-check-input"></td>
+                                        <td>CS401</td>
+                                        <td>Yazılım Mühendisliği</td>
+                                        <td>Dr. Ayşe Yılmaz</td>
+                                        <td>3</td>
+                                        <td><span class="badge bg-success">18/25</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" class="form-check-input"></td>
+                                        <td>CS450</td>
+                                        <td>Yapay Zeka</td>
+                                        <td>Dr. Ayşe Yılmaz</td>
+                                        <td>3</td>
+                                        <td><span class="badge bg-warning text-dark">12/15</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" class="form-check-input"></td>
+                                        <td>CS310</td>
+                                        <td>Mobil Uygulama Geliştirme</td>
+                                        <td>Dr. Mehmet Demir</td>
+                                        <td>3</td>
+                                        <td><span class="badge bg-danger">28/30</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" class="form-check-input"></td>
+                                        <td>MATH301</td>
+                                        <td>Nümerik Analiz</td>
+                                        <td>Prof. Dr. Ahmet Kaya</td>
+                                        <td>3</td>
+                                        <td><span class="badge bg-success">15/40</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" class="form-check-input"></td>
+                                        <td>ENG205</td>
+                                        <td>Teknik İngilizce</td>
+                                        <td>Dr. John Smith</td>
+                                        <td>2</td>
+                                        <td><span class="badge bg-success">22/35</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
+                        <button type="button" class="btn btn-primary">Kaydet</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Login işlemleri
+            document.getElementById('login-button').addEventListener('click', function () {
+                const isTeacher = !document.getElementById('student-login-btn').classList.contains('active');
+
+                if (isTeacher) {
+                    document.getElementById('login-page').style.display = 'none';
+                    document.getElementById('teacher-page').style.display = 'block';
+                } else {
+                    document.getElementById('login-page').style.display = 'none';
+                    document.getElementById('student-page').style.display = 'block';
+                }
+            });
+
+            // Öğrenci/Öğretmen seçim butonları
+            document.getElementById('student-login-btn').addEventListener('click', function () {
+                this.classList.add('active');
+                document.getElementById('teacher-login-btn').classList.remove('active');
+            });
+
+            document.getElementById('teacher-login-btn').addEventListener('click', function () {
+                this.classList.add('active');
+                document.getElementById('student-login-btn').classList.remove('active');
+            });
+
+            // Çıkış işlemleri
+            document.getElementById('teacher-logout').addEventListener('click', function () {
+                document.getElementById('teacher-page').style.display = 'none';
+                document.getElementById('login-page').style.display = 'block';
+            });
+
+            document.getElementById('student-logout').addEventListener('click', function () {
+                document.getElementById('student-page').style.display = 'none';
+                document.getElementById('login-page').style.display = 'block';
+            });
+        });
+    </script>

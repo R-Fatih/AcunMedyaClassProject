@@ -1,0 +1,39 @@
+﻿<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+		// Login işlemleri
+		document.getElementById('login-button').addEventListener('click', function () {
+			const isTeacher = !document.getElementById('student-login-btn').classList.contains('active');
+
+			if (isTeacher) {
+				document.getElementById('login-page').style.display = 'none';
+				document.getElementById('teacher-page').style.display = 'block';
+			} else {
+				document.getElementById('login-page').style.display = 'none';
+				document.getElementById('student-page').style.display = 'block';
+			}
+		});
+
+		// Öğrenci/Öğretmen seçim butonları
+		document.getElementById('student-login-btn').addEventListener('click', function () {
+			this.classList.add('active');
+			document.getElementById('teacher-login-btn').classList.remove('active');
+		});
+
+		document.getElementById('teacher-login-btn').addEventListener('click', function () {
+			this.classList.add('active');
+			document.getElementById('student-login-btn').classList.remove('active');
+		});
+
+		// Çıkış işlemleri
+		document.getElementById('teacher-logout').addEventListener('click', function () {
+			document.getElementById('teacher-page').style.display = 'none';
+			document.getElementById('login-page').style.display = 'block';
+		});
+
+		document.getElementById('student-logout').addEventListener('click', function () {
+			document.getElementById('student-page').style.display = 'none';
+			document.getElementById('login-page').style.display = 'block';
+		});
+	});
+</script>

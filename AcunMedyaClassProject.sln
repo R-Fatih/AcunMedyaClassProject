@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35931.197 d17.13
+VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcunMedyaClassProject.WebApi", "AcunMedyaClassProject.WebApi\AcunMedyaClassProject.WebApi.csproj", "{5041C5E3-EC49-40A7-96A0-F6BBDCC31E75}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcunMedyaClassProject.WebUI", "AcunMedyaClassProject.WebUI\AcunMedyaClassProject.WebUI.csproj", "{888C3054-D104-4895-97B6-8A42CE083703}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{5041C5E3-EC49-40A7-96A0-F6BBDCC31E75}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5041C5E3-EC49-40A7-96A0-F6BBDCC31E75}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5041C5E3-EC49-40A7-96A0-F6BBDCC31E75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{888C3054-D104-4895-97B6-8A42CE083703}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{888C3054-D104-4895-97B6-8A42CE083703}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{888C3054-D104-4895-97B6-8A42CE083703}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{888C3054-D104-4895-97B6-8A42CE083703}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

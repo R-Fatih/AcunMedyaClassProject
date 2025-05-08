@@ -1,0 +1,123 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/UILayout/Index.cshtml";
+}
+
+<!-- LOGIN PAGE -->
+<div id="login-page">
+	<nav class="navbar navbar-expand-lg navbar-dark">
+		<div class="container">
+			<a class="navbar-brand" href="#">
+				<i class="fas fa-university me-2"></i>
+				AKADEMİK PORTAL
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ms-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="#"><i class="fas fa-info-circle me-1"></i> Hakkında</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#"><i class="fas fa-envelope me-1"></i> İletişim</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<section class="hero-section">
+		<div class="container text-center">
+			<h1 class="display-4 mb-4">Üniversite Akademik Yönetim Sistemi</h1>
+			<p class="lead mb-5">Derslerinizi yönetin, notlarınızı takip edin ve akademik başarınızı artırın!</p>
+		</div>
+	</section>
+
+	<div class="container animated">
+		<div class="row justify-content-center">
+			<div class="col-md-8 col-lg-6">
+				<div class="card">
+					<div class="card-header bg-primary text-white">
+						<h4 class="mb-0">Giriş Yap</h4>
+					</div>
+					<div class="card-body">
+						<div class="mb-4">
+							<div class="btn-group w-100" role="group">
+								<button type="button" class="btn btn-outline-primary active"
+										id="student-login-btn">
+									Öğrenci
+								</button>
+								<button type="button" class="btn btn-outline-primary"
+										id="teacher-login-btn">
+									Öğretmen
+								</button>
+							</div>
+						</div>
+						<form id="login-form">
+							<div class="mb-3">
+								<label for="username" class="form-label">Kullanıcı Adı</label>
+								<div class="input-group">
+									<span class="input-group-text"><i class="fas fa-user"></i></span>
+									<input type="text" class="form-control" id="username"
+										   placeholder="Kullanıcı adınızı girin">
+								</div>
+							</div>
+							<div class="mb-3">
+								<label for="password" class="form-label">Şifre</label>
+								<div class="input-group">
+									<span class="input-group-text"><i class="fas fa-lock"></i></span>
+									<input type="password" class="form-control" id="password"
+										   placeholder="Şifrenizi girin">
+								</div>
+							</div>
+							<div class="mb-3 form-check">
+								<input type="checkbox" class="form-check-input" id="rememberMe">
+								<label class="form-check-label" for="rememberMe">Beni hatırla</label>
+							</div>
+							<button type="button" class="btn btn-primary w-100 mb-3" id="login-button">
+								<i class="fas fa-sign-in-alt me-2"></i>Giriş Yap
+							</button>
+							<div class="text-center">
+								<a href="#" class="text-decoration-none">Şifremi unuttum</a>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<footer class="footer mt-5">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4">
+					<h5>AKADEMİK PORTAL</h5>
+					<p>Eğitim hayatınızı kolaylaştıran dijital çözümler sunuyoruz.</p>
+				</div>
+				<div class="col-md-4">
+					<h5>Hızlı Linkler</h5>
+					<ul class="list-unstyled">
+						<li><a href="#" class="text-light">Ana Sayfa</a></li>
+						<li><a href="#" class="text-light">Hakkımızda</a></li>
+						<li><a href="#" class="text-light">İletişim</a></li>
+						<li><a href="#" class="text-light">Yardım Merkezi</a></li>
+					</ul>
+				</div>
+				<div class="col-md-4">
+					<h5>İletişim</h5>
+					<address>
+						<p><i class="fas fa-map-marker-alt me-2"></i> Üniversiteler Mah., 06800 Çankaya/Ankara</p>
+						<p><i class="fas fa-phone me-2"></i> (0312) 123 45 67</p>
+						<p><i class="fas fa-envelope me-2"></i> info@akademikportal.edu.tr</p>
+					</address>
+				</div>
+			</div>
+			<hr class="mt-4 mb-4 bg-light">
+			<div class="text-center">
+				<p>&copy; 2025 Akademik Portal. Tüm hakları saklıdır.</p>
+			</div>
+		</div>
+	</footer>
+</div>
