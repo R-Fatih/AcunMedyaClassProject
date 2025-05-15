@@ -2,17 +2,17 @@
 <script>
 	document.addEventListener('DOMContentLoaded', function () {
 		// Login işlemleri
-		document.getElementById('login-button').addEventListener('click', function () {
-			const isTeacher = !document.getElementById('student-login-btn').classList.contains('active');
+		// document.getElementById('login-button').addEventListener('click', function () {
+		// 	const isTeacher = !document.getElementById('student-login-btn').classList.contains('active');
 
-			if (isTeacher) {
-				document.getElementById('login-page').style.display = 'none';
-				document.getElementById('teacher-page').style.display = 'block';
-			} else {
-				document.getElementById('login-page').style.display = 'none';
-				document.getElementById('student-page').style.display = 'block';
-			}
-		});
+		// 	if (isTeacher) {
+		// 		document.getElementById('login-page').style.display = 'none';
+		// 		document.getElementById('teacher-page').style.display = 'block';
+		// 	} else {
+		// 		document.getElementById('login-page').style.display = 'none';
+		// 		document.getElementById('student-page').style.display = 'block';
+		// 	}
+		// });
 
 		// Öğrenci/Öğretmen seçim butonları
 		document.getElementById('student-login-btn').addEventListener('click', function () {

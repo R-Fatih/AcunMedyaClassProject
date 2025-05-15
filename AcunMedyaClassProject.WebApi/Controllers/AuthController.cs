@@ -1,5 +1,6 @@
 ﻿using AcunMedyaClassProject.WebApi.Dtos;
 using AcunMedyaClassProject.WebApi.Entities;
+using AcunMedyaClassProject.WebApi.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -14,11 +15,13 @@ namespace AcunMedyaClassProject.WebApi.Controllers
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly RoleManager<AppRole> _roleManager;
+        private readonly JwtService _jwtService;
 
-        public AuthController(UserManager<AppUser> userManager, RoleManager<AppRole> roleManager)
+        public AuthController(UserManager<AppUser> userManager, RoleManager<AppRole> roleManager, JwtService jwtService)
         {
             _userManager = userManager;
             _roleManager = roleManager;
+            _jwtService = jwtService;
         }
 
         [HttpPost("registerTeacher")]
@@ -95,6 +98,24 @@ namespace AcunMedyaClassProject.WebApi.Controllers
             var users = await _userManager.Users
                 .Select(x => new { Id = x.Id, Name = x.FirstName + " " + x.LastName, Email = x.Email, Phone = x.PhoneNumber }).ToListAsync();
             return Ok(users);
+        }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login(LoginDto dto)
+        {
+            var user = await _userManager.FindByNameAsync(dto.Username);
+            if (user == null)
+                return BadRequest("Kullanıcı adı veya şifre yanlış");
+            var result = await _userManager.CheckPasswordAsync(user, dto.Password);
+            if (result)
+            {
+                var token = await _jwtService.GenerateToken(user);
+                return Ok(new { Token = token });
+            }
+            else
+            {
+                return BadRequest("Kullanıcı adı veya şifre yanlış");
+            }
         }
     }
 }
