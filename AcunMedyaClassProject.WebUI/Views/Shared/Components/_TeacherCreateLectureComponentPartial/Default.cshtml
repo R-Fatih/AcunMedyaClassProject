@@ -1,0 +1,48 @@
+﻿@using AcunMedyaClassProject.Dtos.LectureDtos
+@model CreateLectureDto
+<div class="modal fade" id="addCourseModal" tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header bg-primary text-white">
+				<h5 class="modal-title">Yeni Ders Ekle</h5>
+				<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<form method="post" asp-controller="Teacher" asp-action="CreateLecture">
+					<div class="mb-3">
+						<label for="courseCode" class="form-label">Ders Kodu</label>
+						<input asp-for=Code type="text" class="form-control" id="courseCode">
+					</div>
+					<div class="mb-3">
+						<label for="courseName" class="form-label">Ders Adı</label>
+						<input asp-for=Name type="text" class="form-control" id="courseName">
+					</div>
+					<div class="mb-3">
+						<label for="courseDescription" class="form-label">Açıklama</label>
+						<textarea asp-for=Description class="form-control" id="courseDescription" rows="3"></textarea>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="mb-3">
+								<label for="courseCredits" class="form-label">Kredi</label>
+								<input asp-for=Credit type="number" class="form-control" id="courseCredits">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="mb-3">
+								<label for="courseCapacity" class="form-label">Kontenjan</label>
+								<input asp-for=Limit type="number" class="form-control" id="courseCapacity">
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
+						<button type="submit" class="btn btn-primary">Dersi Ekle</button>
+					</div>
+				</form>
+			</div>
+			
+		</div>
+	</div>
+</div>

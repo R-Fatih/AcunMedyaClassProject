@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcunMedyaClassProject.WebAp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcunMedyaClassProject.WebUI", "AcunMedyaClassProject.WebUI\AcunMedyaClassProject.WebUI.csproj", "{888C3054-D104-4895-97B6-8A42CE083703}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcunMedyaClassProject.Dtos", "AcunMedyaClassProject.Dtos\AcunMedyaClassProject.Dtos.csproj", "{ACFE1E55-034B-4FCA-8CE0-D9694CD3DD86}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{888C3054-D104-4895-97B6-8A42CE083703}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{888C3054-D104-4895-97B6-8A42CE083703}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{888C3054-D104-4895-97B6-8A42CE083703}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACFE1E55-034B-4FCA-8CE0-D9694CD3DD86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACFE1E55-034B-4FCA-8CE0-D9694CD3DD86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACFE1E55-034B-4FCA-8CE0-D9694CD3DD86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACFE1E55-034B-4FCA-8CE0-D9694CD3DD86}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
